@@ -1,6 +1,6 @@
 {
   "name": "geoaffine",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "GeoSpatial Affine Transformations for Humans",
   "type": "module",
   "main": "index.js",
