@@ -1,0 +1,47 @@
+{
+  "name": "geoaffine",
+  "version": "0.0.0",
+  "description": "GeoSpatial Affine Transformations for Humans",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "Geotransform.js",
+    "ModelTransform.js",
+    "fn/apply.js",
+    "fn/invert.js",
+    "precise/Geotransform.js",
+    "precise/invert.js",
+    "precise/ModelTransform.js"
+  ],
+  "scripts": {
+    "format": "npx prettier --arrow-parens=avoid --print-width=200 --trailing-comma=none --write *.js */*.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielJDufour/geoaffine.git"
+  },
+  "keywords": [
+    "affine",
+    "crs",
+    "gdal",
+    "geospatial",
+    "geotransform",
+    "project",
+    "srs",
+    "transform"
+  ],
+  "author": "Daniel J. Dufour",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/DanielJDufour/geoaffine/issues"
+  },
+  "homepage": "https://github.com/DanielJDufour/geoaffine#readme",
+  "devDependencies": {
+    "flug": "^2.6.0"
+  },
+  "dependencies": {
+    "preciso": "^0.11.0"
+  }
+}
