@@ -1,21 +1,26 @@
-import clean from "preciso/clean.js";
-import divide from "preciso/divide.js";
-import multiply from "preciso/multiply.js";
-import round from "preciso/round.js";
-import sum from "preciso/sum.js";
+const clean = require("preciso/clean.js");
+const divide = require("preciso/divide.js");
+const multiply = require("preciso/multiply.js");
+const round = require("preciso/round.js");
+const sign = require("preciso/sign.js");
+const sum = require("preciso/sum.js");
 
-import invert from "./invert.js";
+const invert = require("./invert.js");
 
-export default function PreciseGeotransform(geotransform) {
+function PreciseGeotransform(geotransform) {
   geotransform = geotransform.map(n => n.toString());
   const [a, b, c, d, e, f] = geotransform;
   const inverted = invert(geotransform);
   const [ai, bi, ci, di, ei, fi] = inverted;
+
+  const forwardX = ([I, J]) => sum([a, multiply(b, I.toString()), multiply(c, J.toString())]);
+  const forwardY = ([I, J]) => sum([d, multiply(e, I.toString()), multiply(f, J.toString())]);
+
   return {
-    forward: function forward([I, J]) {
-      I = I.toString();
-      J = J.toString();
-      return [sum([a, multiply(b, I), multiply(c, J)]), sum([d, multiply(e, I), multiply(f, J)])];
+    forwardX,
+    forwardY,
+    forward: function forward(IJ) {
+      return [forwardX(IJ), forwardY(IJ)];
     },
     inverse: function inverse([X, Y], { digits = 100 } = {}) {
       X = X.toString();
@@ -26,4 +31,15 @@ export default function PreciseGeotransform(geotransform) {
       return [clean(round(xsum, { digits })), clean(round(ysum, { digits }))];
     }
   };
+}
+
+if (typeof define === "function" && define.amd) {
+  define(function () {
+    return PreciseGeotransform;
+  });
+}
+
+if (typeof module === "object") {
+  module.exports = PreciseGeotransform;
+  module.exports.default = PreciseGeotransform;
 }

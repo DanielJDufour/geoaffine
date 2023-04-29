@@ -1,5 +1,12 @@
-export { default as Geotransform } from "./Geotransform.js";
-export { default as ModelTransform } from "./ModelTransform.js";
+const Geotransform = require("./Geotransform.js");
+const ModelTransform = require("./ModelTransform.js");
 
-export { default as PreciseGeotransform } from "./precise/Geotransform.js";
-export { default as PreciseModelTransform } from "./precise/ModelTransform.js";
+const PreciseGeotransform = require("./precise/Geotransform.js");
+const PreciseModelTransform = require("./precise/ModelTransform.js");
+
+module.exports = {
+  Geotransform,
+  ModelTransform,
+  PreciseGeotransform,
+  PreciseModelTransform
+};

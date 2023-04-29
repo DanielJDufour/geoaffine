@@ -1,7 +1,7 @@
-import apply from "./fn/apply.js";
-import invert from "./fn/invert.js";
+const apply = require("./fn/apply.js");
+const invert = require("./fn/invert.js");
 
-export default function PreciseGeotransform(geotransform) {
+function Geotransform(geotransform) {
   const inversion = invert(geotransform);
   return {
     forward: function forward(point) {
@@ -13,4 +13,15 @@ export default function PreciseGeotransform(geotransform) {
       return result;
     }
   };
+}
+
+if (typeof define === "function" && define.amd) {
+  define(function () {
+    return Geotransform;
+  });
+}
+
+if (typeof module === "object") {
+  module.exports = Geotransform;
+  module.exports.default = Geotransform;
 }

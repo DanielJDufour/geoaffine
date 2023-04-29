@@ -1,8 +1,8 @@
-import flip_sign from "preciso/flip_sign.js";
-import multiply from "preciso/multiply.js";
-import subtract from "preciso/subtract.js";
+const flip_sign = require("preciso/flip_sign.js");
+const multiply = require("preciso/multiply.js");
+const subtract = require("preciso/subtract.js");
 
-export default function invert(geotransform) {
+function invert(geotransform) {
   const [a, b, c, d, e, f] = geotransform;
 
   const ae = multiply(a, e);
@@ -22,4 +22,15 @@ export default function invert(geotransform) {
     [e, h],
     [b, g]
   ];
+}
+
+if (typeof define === "function" && define.amd) {
+  define(function () {
+    return invert;
+  });
+}
+
+if (typeof module === "object") {
+  module.exports = invert;
+  module.exports.default = invert;
 }

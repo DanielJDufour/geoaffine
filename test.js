@@ -1,5 +1,5 @@
-import test from "flug";
-import { ModelTransform, Geotransform, PreciseGeotransform, PreciseModelTransform } from "./index.js";
+const test = require("flug");
+const { ModelTransform, Geotransform, PreciseGeotransform, PreciseModelTransform } = require("./index.js");
 
 test("Geotransform", ({ eq }) => {
   const geotransform = [337934.4836350695, -0.14299987236417117, -0.5767759114507439, 7840518.464866471, -0.5767759114507457, 0.14299987236414916];
@@ -28,7 +28,7 @@ test("ModelTransform", ({ eq }) => {
 
   const { forward, inverse } = ModelTransform(matrix);
 
-  eq(forward([2000, 2000]), [336494.9320674397,7839650.912788297]);
+  eq(forward([2000, 2000]), [336494.9320674397, 7839650.912788297]);
   eq(inverse([336780.9318121680122, 7840804.46461119929832], { round: true }), [-0, 2000]);
 });
 
@@ -37,6 +37,6 @@ test("PreciseModelTransform", ({ eq }) => {
 
   const { forward, inverse } = PreciseModelTransform(matrix);
 
-  eq(forward([2000, 2000]), ["336494.93206743966986","7839650.91278829780692"]);
-  eq(inverse(["336494.93206743966986","7839650.91278829780692"], { round: true }), ["2000", "2000"]);
+  eq(forward([2000, 2000]), ["336494.93206743966986", "7839650.91278829780692"]);
+  eq(inverse(["336494.93206743966986", "7839650.91278829780692"], { round: true }), ["2000", "2000"]);
 });
