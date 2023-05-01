@@ -25,7 +25,7 @@ forward([200, 100]);
 [337862.50605668797, 7840475.087262562]
 
 // reverse above
-inverse([337862.50605668797, 7840475.087262562], { round: true })
+inverse([337862.50605668797, 7840475.087262562], { floor: true })
 [100, 100]
 ```
 
@@ -48,7 +48,7 @@ const { forward, inverse } = ModelTransform(matrix);
 forward([2000, 2000]);
 [336494.93206743966, 7839650.912788298]
 
-inverse([336780.9318121680122, 7840804.46461119929832], { round: true })
+inverse([336780.9318121680122, 7840804.46461119929832], { floor: true })
 [0, 2000]
 ```
 
@@ -71,5 +71,12 @@ const xy = ["337890.62693810329012497625", "7840509.0581307472924654645"]
 
 inverse(xy)
 ["33.125", "67.825"]
+
+inverse(xy, { floor: true })
+["33", "67"]
 ```
 
+
+## References:
+- https://gdal.org/tutorials/geotransforms_tut.html
+- https://en.wikipedia.org/wiki/World_file

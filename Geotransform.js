@@ -7,9 +7,10 @@ function Geotransform(geotransform) {
     forward: function forward(point) {
       return apply(geotransform, point);
     },
-    inverse: function inverse(point, { round = false } = { round: false }) {
+    inverse: function inverse(point, { floor = false, round = false } = { floor: false, round: false }) {
       let result = apply(inversion, point);
       if (round) result = result.map(n => Math.round(n));
+      if (floor) result = result.map(n => Math.floor(n));
       return result;
     }
   };
